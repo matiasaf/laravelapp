@@ -1,0 +1,27 @@
+<?php $__env->startSection('content'); ?>
+
+	<?php echo $__env->make('articles.barranav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+	
+	<h1> Escribimos un nuevo artículo </h1>
+
+
+	<hr/>
+
+	
+		<?php echo Form::open(['url' => 'articles']); ?>
+
+
+		<?php echo $__env->make('articles.form', ['botonSubmit'  => 'Agregar nuevo artículo'] , array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+		<?php echo Form::close(); ?>	
+	
+	
+	
+	<?php /* Mostrar error de validación */ ?>
+	
+	<?php echo $__env->make('errors.listar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

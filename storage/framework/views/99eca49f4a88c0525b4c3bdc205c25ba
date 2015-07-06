@@ -1,0 +1,19 @@
+<?php $__env->startSection('content'); ?>
+	
+	 <ul class="nav nav-tabs" role="tablist">
+		    <li><a href="<?php echo e(url('articles')); ?>">Home</a></li>
+		    <li><a href="<?php echo e(url('articles/create')); ?>">Crear un nuevo articulo</a></li>
+		    <li class="active"><a href="<?php echo e(url('about')); ?>">Sobre mi</a></li>
+		    <li><a href="<?php echo e(url('contact')); ?>">Contacto</a></li>
+		    
+
+		 </ul>
+	
+	<h1>Sobre mi.</h1>
+	
+
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

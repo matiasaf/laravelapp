@@ -1,0 +1,39 @@
+<?php $__env->startSection('content'); ?>
+
+
+	 <?php echo $__env->make('articles.barranav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+
+
+ <h1>Articulos nuevos: </h1> 
+
+	<?php foreach($articles as $article): ?>
+		
+	
+	
+		<article>
+			
+			<h2>
+
+			<?php /* Titulo */ ?>
+			<a href=" <?php echo e(url('/articles', $article->id )); ?> "> <?php echo e($article->title); ?> </a> 
+			<?php /* Boton editar */ ?>
+			<a href="<?php echo e($url = action('ArticlesController@edit', $article->id)); ?>" class="btn btn-warning" role="button">Editar</a>
+		
+			</h2>
+			
+			
+			<div class="body"> <?php echo e($article->body); ?> </div>
+
+			
+			<small><?php echo Form::label('tiempohace', $article->published_at->diffForHumans() ); ?></small>
+			
+
+		</article>
+
+
+	<?php endforeach; ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

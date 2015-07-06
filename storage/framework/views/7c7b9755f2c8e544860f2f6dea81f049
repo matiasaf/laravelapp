@@ -1,0 +1,6 @@
+	 <ul class="nav nav-tabs" role="tablist">
+		    <li ><a href="<?php echo e(url('articles')); ?>">Home</a></li>
+		    <li ><a href="<?php echo e(url('articles/create')); ?>">Crear un nuevo articulo</a></li>
+		    <li><a href="<?php echo e(url('about')); ?>">Sobre mi</a></li>
+		    <li><a href="<?php echo e(url('contact')); ?>">Contacto</a></li>
+		 </ul>	
