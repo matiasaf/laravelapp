@@ -18,7 +18,8 @@ class ArticlesController extends Controller {
 	 */
 	public function index()
 	{
-		//$articles = Article::latest('published_at')->where('published_at', '<=', Carbon::now())->get();
+		
+
 		$articles = Article::latest('published_at')->publicado()->get();
 
 
@@ -52,7 +53,7 @@ class ArticlesController extends Controller {
 
 	}	
 
-	public function destroy($id)
+	public function eliminar($id)
 	{
 
 		$articles = Article::findOrFail($id);

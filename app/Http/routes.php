@@ -35,7 +35,7 @@ Route::get('contact', 'PagesController@contact');
 */
 
 Route::resource('articles','ArticlesController');
-
+Route::get('articles/eliminar/{id}', 'ArticlesController@eliminar');
 
 
 
