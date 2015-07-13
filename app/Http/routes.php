@@ -18,7 +18,7 @@ Route::get('contact', 'PagesController@contact');
 
 
 
-
+/*
   Route::get('articles','ArticlesController@index');
 
  Route::get('articles/create','ArticlesController@create');
@@ -32,10 +32,10 @@ Route::get('contact', 'PagesController@contact');
  Route::post('articles','ArticlesController@store');
 
  Route::post('articles/update/{id}', 'ArticlesController@update');
+*/
 
 
-
-//Route::resource('articles','ArticlesController');
+Route::resource('articles','ArticlesController');
 
 Route::get('articles/eliminar/{id}', 'ArticlesController@eliminar');
 
