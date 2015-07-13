@@ -4,14 +4,14 @@
 
 	@include('articles.barranav')
 
-	
+
 	<h1> Escribimos un nuevo artículo </h1>
 
 
 	<hr/>
 
 	
-		{!! Form::open(['url' => 'articles'])  !!}
+		{!! Form::open([ 'url' => 'articles'] )  !!}
 
 		@include('articles.form', ['botonSubmit'  => 'Agregar nuevo artículo'] )
 

@@ -1,7 +1,7 @@
 <?php namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Carbon;
 
 class Article extends Model {
 
@@ -19,7 +19,8 @@ class Article extends Model {
 	{
 
 		$query->where('published_at', '<=', Carbon::now());
-	}	
+	}
+
 
 	public function scopeNopublicado($query)
 	{

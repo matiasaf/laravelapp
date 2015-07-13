@@ -7,7 +7,8 @@
 	 @include('articles.barranav')
 
 
-
+	
+	
 
  <h1>Articulos nuevos: </h1> 
 

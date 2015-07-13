@@ -8,7 +8,8 @@
 
 
 		<div class="form-group">
-			
+
+
 			{!! Form::label('body', 'Contenido:') !!}
 			{!! Form::textarea('body', null, ['class' => 'form-control']) !!}
 			

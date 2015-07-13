@@ -16,11 +16,23 @@ class ArticlesController extends Controller {
 	 *
 	 * @return Response
 	 */
+
+	public function __construct()
+	{
+
+		$this->middleware('auth');
+
+	}
+
+
 	public function index()
 	{
-		
+			
+
 
 		$articles = Article::latest('published_at')->publicado()->get();
+
+
 
 
 		return view('articles.index', compact('articles'));
@@ -38,17 +50,24 @@ class ArticlesController extends Controller {
 	public function create()
 	{
 
+
 		return view('articles.create');
 		
 	}
 
 	public function store(ArticleRequest $request)
 	{
+
+
+		$article= new Article ($request->all());
 		
+		\Auth::user()->articles()->save($article);
+
 		Article::create($request->all());
 		
-		return redirect('articles/');
+		return redirect('articles');
 		
+	
 
 
 	}	
