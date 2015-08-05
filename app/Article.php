@@ -36,6 +36,20 @@ class Article extends Model {
 
 	}
 
+	public function tags()
+	{
+
+		return $this->belongsToMany('App\Tag')->withTimestamps();
+
+	}
+
+	public function getTagListAttribute()
+	{
+		return $this->tags()->lists('id');
+
+	}
+
+
 
 
 }

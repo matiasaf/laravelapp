@@ -1,10 +1,12 @@
 <?php namespace App\Http\Controllers;
 
 use App\Article;
+use App\Tag;
+
 use App\Http\Requests;
 use App\Http\Requests\ArticleRequest;
 
-use App\Http\Controllers\Controller;
+ use App\Http\Controllers\Controller;
  use Carbon;
  use Request;
 
@@ -20,7 +22,7 @@ class ArticlesController extends Controller {
 	public function __construct()
 	{
 
-		$this->middleware('auth');
+		$this->middleware('auth' , ['only' => ['create' , 'edit', 'eliminar']] );
 
 	}
 
@@ -43,6 +45,7 @@ class ArticlesController extends Controller {
 
 		$articles = Article::findOrFail($id);
 
+
 		return view('articles.show', compact('articles'));
 	
 	}
@@ -51,7 +54,9 @@ class ArticlesController extends Controller {
 	{
 
 
-		return view('articles.create');
+		$tags= Tag::lists('name', 'id');
+
+		return view('articles.create', compact('tags'));
 		
 	}
 
@@ -59,18 +64,26 @@ class ArticlesController extends Controller {
 	{
 
 
-		$article= new Article ($request->all());
+	/*	$article= new Article ($request->all());
 		
 		\Auth::user()->articles()->save($article);
 
-		Article::create($request->all());
-		
+		Article::create($request->all());*/
+
+
+
+		$article = \Auth::user()->articles()->create($request->all());
+
+		$this->syncTags($article , $request->input('tag_list'));
+
+		\Session::flash('mensaje_flash', 'Tu articulo fue creado con éxito!');
+
 		return redirect('articles');
 		
 	
 
 
-	}	
+	}
 
 	public function eliminar($id)
 	{
@@ -78,16 +91,20 @@ class ArticlesController extends Controller {
 		$articles = Article::findOrFail($id);
 		$articles->delete();
 
-		return redirect('articles/');
+
+
+		return redirect('articles');
 		
 	}
 
 	public function edit($id)
 	{
 
+		$tags= Tag::lists('name', 'id');
+
 		$article = Article::findOrFail($id);
 
-		return view('articles.edit', compact('article'));
+		return view('articles.edit', compact('article', 'tags'));
 		
 	}
 
@@ -96,9 +113,21 @@ class ArticlesController extends Controller {
 	{
 		$article = Article::findOrFail($id);	
 		$article->update( $request->all());
+
+
+		$this->syncTags($article, $request->input('tag_list'));
+
+
+
 		
 		return redirect ('articles');
 		
+	}
+
+	public function syncTags(Article $article , array $tags){
+
+		$article->tags()->sync($tags);
+
 	}
 
 }
